@@ -5,29 +5,23 @@
 # PROGRAMMER:      Heather D.
 # DATE CREATED:    06.12.2021                           
 # REVISED DATE: 
-# PURPOSE: Create a function adjust_results4_isadog that adjusts the results 
+# PURPOSE: Creates a function adjust_results4_isadog that adjusts the results 
 #          dictionary to indicate whether or not the pet image label is of-a-dog, 
 #          and to indicate whether or not the classifier image label is of-a-dog.
 #          All dog labels from both the pet images and the classifier function
-#          will be found in the dognames.txt file. We recommend reading all the
-#          dog names in dognames.txt into a dictionary where the 'key' is the 
-#          dog name (from dognames.txt) and the 'value' is one. If a label is 
+#          will be read from dognames.txt file. All the dog names in dognames.txt 
+#          are read into a dictionary where the 'key' is the 
+#          dog name (from dognames.txt) and the 'value' is 1. If a label is 
 #          found to exist within this dictionary of dog names then the label 
-#          is of-a-dog, otherwise the label isn't of a dog. Alternatively one 
-#          could also read all the dog names into a list and then if the label
-#          is found to exist within this list - the label is of-a-dog, otherwise
-#          the label isn't of a dog. 
+#          is "of-a-dog", otherwise the label isn't "of a dog". 
 #         This function inputs:
 #            -The results dictionary as results_dic within adjust_results4_isadog 
 #             function and results for the function call within main.
 #            -The text file with dog names as dogfile within adjust_results4_isadog
 #             function and in_arg.dogfile for the function call within main. 
 #           This function uses the extend function to add items to the list 
-#           that's the 'value' of the results dictionary. You will be adding the
-#           whether or not the pet image label is of-a-dog as the item at index
-#           3 of the list and whether or not the classifier label is of-a-dog as
-#           the item at index 4 of the list. Note we recommend setting the values
-#           at indices 3 & 4 to 1 when the label is of-a-dog and to 0 when the 
+#           that's the 'value' of the results dictionary. The values
+#           at indices 3 & 4 are set to 1 when the label is of-a-dog and to 0 when the 
 #           label isn't a dog.
 # 
 def adjust_results4_isadog(results_dic, dogfile):
@@ -58,7 +52,7 @@ def adjust_results4_isadog(results_dic, dogfile):
                associated with that breed (ex. maltese dog, maltese terrier, 
                maltese) (string - indicates text file's filename)
     Returns:
-           None - results_dic is mutable data type so no return needed.
+           None - since results_dic is mutable data type no return is needed.
     """    
     # Create Dognames Dictionary
     dognames_dic = {}
