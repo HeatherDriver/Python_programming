@@ -11,7 +11,7 @@ vgg16 = models.vgg16(pretrained=True)
 
 models = {'resnet': resnet18, 'alexnet': alexnet, 'vgg': vgg16}
 
-# obtain ImageNet labels
+# obtains ImageNet labels
 with open('imagenet1000_clsid_to_human.txt') as imagenet_classes_file:
     imagenet_classes_dict = ast.literal_eval(imagenet_classes_file.read())
 
@@ -19,7 +19,7 @@ def classifier(img_path, model_name):
     # load the image
     img_pil = Image.open(img_path)
 
-    # define transforms
+    # defines transforms
     preprocess = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
@@ -27,21 +27,19 @@ def classifier(img_path, model_name):
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     
-    # preprocess the image
+    # preprocesses the image
     img_tensor = preprocess(img_pil)
     
-    # resize the tensor (add dimension for batch)
+    # resizes the tensor (adds dimension for batch)
     img_tensor.unsqueeze_(0)
     
-    # wrap input in variable, wrap input in variable - no longer needed for
-    # v 0.4 & higher code changed 04/26/2018 by Jennifer S. to handle PyTorch upgrade
+    # wraps input in variable
     pytorch_ver = __version__.split('.')
     
-    # pytorch versions 0.4 & hihger - Variable depreciated so that it returns
+    # pytorch versions 0.4 & hihger - Variable deprecated so that it returns
     # a tensor. So to address tensor as output (not wrapper) and to mimic the 
     # affect of setting volatile = True (because we are using pretrained models
-    # for inference) we can set requires_gradient to False. Here we just set 
-    # requires_grad_ to False on our tensor 
+    # for inference). Here requires_grad_ is set to False 
     if int(pytorch_ver[0]) > 0 or int(pytorch_ver[1]) >= 4:
         img_tensor.requires_grad_(False)
     
@@ -58,17 +56,17 @@ def classifier(img_path, model_name):
     # instead of (default)training mode
     model = model.eval()
     
-    # apply data to model - adjusted based upon version to account for 
+    # applies data to model - adjusted based upon version to account for 
     # operating on a Tensor for version 0.4 & higher.
     if int(pytorch_ver[0]) > 0 or int(pytorch_ver[1]) >= 4:
         output = model(img_tensor)
 
     # pytorch versions less than 0.4
     else:
-        # apply data to model
+        # applies data to model
         output = model(data)
 
-    # return index corresponding to predicted class
+    # returns index corresponding to predicted class
     pred_idx = output.data.numpy().argmax()
 
     return imagenet_classes_dict[pred_idx]
