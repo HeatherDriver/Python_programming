@@ -5,9 +5,9 @@
 # PROGRAMMER:   Heather D.
 # DATE CREATED: 06.15.2021
 # REVISED DATE: 
-# PURPOSE: Create a function print_results that prints the results statistics
+# PURPOSE: Creates a function print_results that prints the results statistics
 #          from the results statistics dictionary (results_stats_dic). It 
-#          should also allow the user to be able to print out cases of misclassified
+#          also allows the printing out cases of misclassified
 #          dogs and cases of misclassified breeds of dog using the Results 
 #          dictionary (results_dic).  
 #         This function inputs:
